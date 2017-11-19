@@ -1,17 +1,22 @@
 {
-  "name": "yelpcamp",
+  "name": "LazyLifeLog",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "kwh",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cron": "^1.3.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "mongoose": "^4.13.0"
+    "method-override": "^2.3.10",
+    "mongoose": "^4.13.0",
+    "node-schedule": "^1.2.5",
+    "underscore": "^1.8.3"
   }
 }

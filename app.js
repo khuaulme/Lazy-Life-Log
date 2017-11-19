@@ -1,98 +1,236 @@
-var express     = require('express'),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose");
+var express         = require('express'),
+    app             = express(),
+    methodOverride  = require("method-override");
+    bodyParser      = require("body-parser"),
+    mongoose        = require("mongoose");
+    _               = require("underscore");
+    schedule        = require('node-schedule');
 
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/workout_log");
-app.use(bodyParser.urlencoded({extended:true}));  // just memorize this - good for form posts
-
-app.use(express.static(__dirname + '/public'));
+    const port = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
-
-// SCHEMA SET-UP
-var workoutSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    calories: String
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/drink_log", {
+    useMongoClient:true
 });
 
-var Workout = mongoose.model("Workout", workoutSchema);        // WORKOUT is where I name the collection
 
-Workout.create(
-    {
-        name: "Running",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOzmL9a0iGY50FdrpsDeqkWgL6GuEapmmspukGmB4gVbHeTqorwg",
-        calories: 500
-    }, function (err, workout) {
-        if (err){
-            console.log(err);
-        } else {
-            console.log("NEWLY CREATED WORKOUT!");
-            console.log(workout);
-        }
-    });
+app.use(bodyParser.urlencoded({extended:true}));  // just memorize this - good for form posts
+app.use(methodOverride("_method"));
+app.use(express.static(__dirname + '/public'));
+app.set("view engine", "ejs");
 
 
+// SCHEMA SET-UP
+var drinkSchema = new mongoose.Schema({
+    name: String,
+    image: String,
+    description: String,
+    calories: Number,
+    dservings: Number,
+    wservings: Number
+});
 
+var Drink = mongoose.model("Drink", drinkSchema);        // DRINK is what I name the collection
 
+// Drink.create(
+//     {
+//         name: "Margarita",
+//         image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
+//         description: "One of the crown jewels in the cocktail world." +
+//             " Consists of tequila, triple sec, and lime juice.",
+//         calories: 280,
+//         dservings: 0,
+//         wservings: 4
+//     }, function (err, drink) {
+//         if (err){
+//             console.log(err);
+//         } else {
+//             console.log("NEWLY CREATED DRINK!");
+//             console.log(drink);
+//         }
+//     });
 
 app.get("/", function(req, res){
     res.render("landing")
 });
 
-app.get("/workouts", function(req,res){
-    // get all workouts from db
-    Workout.find({}, function(err, allWorkouts){
-        if (err){
-            console.log(err);
-        } else {
-            res.render("index", {workouts:allWorkouts});
-        }
-    });
-
-
-});
-
-app.post("/workouts", function(req, res){
-
-   // get data from form and add to workouts array
-    var name = req.body.name;
-    var image = req.body.image;
-    var calories = req.body.calories;
-    var newWorkout = {name:name, image: image, calories:calories};
-    Workout.create(newWorkout, function(err, newlyCreated){
-        if (err){
-            console.log("Oops! Can't create workout.");
-            console.log(err);
-        } else {
-            // redirect back to workouts page
-            res.redirect("/workouts"); // default is to redirect as a GET
-        }
-    });
-
-
-
-});
-
-app.get("/workouts/new", function(req,res){
-    res.render("new.ejs");
-});
-
-app.get("/workouts/:id", function(req,res) {
-    Workout.findById(req.params.id, function (err, foundWorkout) {
+// INDEX ROUTE- SHOW ALL DRINKS
+app.get("/drinks", function(req,res) {
+    // get all drinks from db
+    Drink.find({}, function (err, allDrinks) {
         if (err) {
             console.log(err);
         } else {
-            res.render("show", {workout: foundWorkout});
+            res.render("index", {drinks: allDrinks});
         }
     });
 });
 
+//FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(allDrinks);
+app.get("/drinks/Alexa", function(req,res){
+        // get all drinks from db
+        Drink.find({}, function(err, allDrinks){
+            if (err){
+                console.log(err);
+            } else {
+                res.json(allDrinks);
+            }
+        });
+});
+
+// CREATE ROUTE - ADD NEW DRINK TO DB
+app.post("/drinks", function(req, res){
+   // get data from form and add to drinks array
+    var name = req.body.name;
+    var image = req.body.image;
+    var description = req.body.description;
+    var calories = req.body.calories;
+    var dservings = req.body.dservings;
+    var wservings = req.body.dservings;  // set the weekly servings to the daily servings upon creation
+    var newDrink = {name:name, image: image, description: description, calories:calories, dservings: dservings, wservings: wservings};
+    Drink.create(newDrink, function(err, newlyCreated){
+        if (err){
+            console.log("Oops! Can't create drink.");
+            console.log(err);
+        } else {
+            // redirect back to drinks page
+            res.redirect("/drinks"); // default is to redirect as a GET
+        }
+    });
+});
+
+// NEW - SHOW FORM TO CREATE NEW DRINK
+app.get("/drinks/new", function(req,res){
+    res.render("new.ejs");
+});
+
+// SHOWS INFO OVER JUST 1 DRINK
+app.get("/drinks/:id", function(req,res) {
+    Drink.findById(req.params.id, function (err, foundDrink) {
+        if (err) {
+            console.log(err);
+        } else {
+           res.render('show.ejs', { drink: foundDrink });
+        }
+    });
+});
+
+//FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(foundDrink);
+app.get("/drinks/:name/Alexa", function(req,res){
+
+    // var name = req.params.name;
+    Drink.find( { name: req.params.name }, function (err, foundDrink){
+
+        if (err) {
+            console.log("Can't find " + req.params.name + " drink.");
+            console.log(err);
+        } else {
+            res.json(foundDrink);
+        }
+    });
+
+});
+
+//EDIT ROUTE
+app.get("/drinks/:id/edit", function(req,res){
+
+    Drink.findById(req.params.id, function(err, foundDrink){
+        if (err){
+            res.redirect("/drinks");
+        } else {
+            res.render("edit", {drink: foundDrink});
+        }
+
+    });
+
+});
+
+//INCREMENT ROUTE
+app.put("/drinks/:id/inc", function(req,res){
+    Drink.findByIdAndUpdate(
+         req.params.id, { $inc: {
+            dservings: 1,
+            wservings: 1
+            }
+        }, function(err, updatedDrink){
+            if (err){
+                res.redirect("/drinks");
+            } else {
+                res.redirect("/drinks/");
+            }
+        });
+});
+
+//UPDATE ROUTE
+app.put("/drinks/:id", function(req,res){
+    Drink.findByIdAndUpdate(req.params.id, req.body.drink, function(err, updatedDrink){
+       if (err){
+           res.redirect("/drinks");
+       } else {
+
+           console.log("Daily servings: " +  updatedDrink.dservings);  //
+           res.redirect("/drinks/" + req.params.id);
+       }
+    });
+});
+
+//DELETE ROUTE
+app.delete("/drinks/:id", function(req, res){
+    Drink.findByIdAndRemove(req.params.id, function(err, removedDrink){
+       if (err) {
+           console.log(err);
+           res.redirect("/drinks");
+       } else {
+           res.redirect("/drinks");
+       }
+    });
+
+});
+
+// CHRON JOBS ------Weekly Servings = Weekly Servings + Daily Servings ----- Daily Servings = 0 ------
+
+// var dailyJob = schedule.scheduleJob('42 * * * * *', function(){   // ('0 0 0 * * *', function
+//     console.log('The daily answer to life, the universe, and everything!');
+//     Drink.find({}, function (err, allDrinks) {
+//         console.log('Executing Daily Cron Job');
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             allDrinks.forEach(function(drink){
+//              //   drink.set({ wservings: drink.wservings + drink.dservings});
+//                 drink.set({ dservings: 0});
+//                 drink.save(function(err, updatedDrink){
+//                     if (err) { console.log(err);}
+//                     else {}
+//                 });
+//
+//             }); // ends forEach
+//         }
+//     });
+// });
+
+// var weeklyJob = schedule.scheduleJob('12 * * * * *', function(){   // ('0 0 0 * * 0', function
+//     console.log('The answer to everything is 42!');
+//     Drink.find({}, function (err, allDrinks) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             allDrinks.forEach(function(drink){
+//
+//                 drink.set({ wservings: 0});
+//                 drink.save(function(err, updatedDrink){
+//                     if (err) { console.log(err);}
+//                     else {}
+//                 });
+//             });
+//         }
+//     });
+// });
 
 
 
-app.listen(3000, function(){
-    console.log('Workout Log has started.');
+
+app.listen(port, function(){
+    console.log(`Lazy Life Log has started on port ${port}.`);
 });

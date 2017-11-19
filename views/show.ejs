@@ -1,15 +1,29 @@
-<% include partials/header %>
+<%include partials/header.ejs%>
 
 <div class="container">
 
-        <h1><%=workout.name%></h1>
-
-
-    <img src="<%=workout.image%>">
-
+    <h1><%= drink.name %></h1>
     <p>
-        <%=workout.calories%>
+        <%= drink.dservings %> servings today.
     </p>
+    <p>
+        <%= drink.wservings %> servings this week.
+    </p>
+    <img src="<%= drink.image %>">
+    <p>
+        <%= drink.description %>
+    </p>
+    <p>
+        <%= drink.calories %> calories per serving.
+    </p>
+
+        <a class = "btn btn-primary btn-lrg" href="/drinks/<%=drink._id%>/edit">EDIT</a>
+        <form style="display: inline" action="/drinks/<%=drink._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">DELETE</button>
+        </form>
+
+
 </div>
 
-<% include partials/footer %>
+<%include partials/footer.ejs%>
+

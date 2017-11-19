@@ -1,32 +1,40 @@
-<% include partials/header %>
+<%include partials/header.ejs%>
 
 <div class="container">
     <div class="row">
 
 
-        <h1 style="text-align:center">Create a New Workout</h1>
+        <h1 style="text-align:center">Enter a New Drink</h1>
         <div style="width:30%; margin:25px auto;">
 
-            <!--This submits a post request to /workouts in my req-->
-            <form action="/workouts" method="POST">
+            <!--This submits a post request to /drinks in my req-->
+            <!--<form action="/drinks" method="POST">-->
+            <form action="/drinks" method="POST">
                 <div class="form-group">
-                    <input class = "form-control" type="text" name = "name" placeholder="name">
+                    <input class = "form-control" type="text" name = "name" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <input class = "form-control" type="text" name = "image" placeholder="image url">
+                    <input class = "form-control" type="text" name = "image" placeholder="Image url">
                 </div>
                 <div class="form-group">
-                    <input class = "form-control" type="text" name = "calories" placeholder="Calories per hour">
+                    <input class = "form-control" type="text" name = "description" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <input class = "form-control" type="number" name = "calories" placeholder="Calories per serving">
+                </div>
+                <div class="form-group">
+                    <input class = "form-control" type="number" name = "dservings" placeholder="Servings consumed">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">Submit!</button>
                 </div>
             </form>
-            <a href="/workouts">Go Back</a>
+
+            <a href="/drinks">Go Back</a>
         </div>
 
     </div>
 
 </div>
 
-<% include partials/footer %>
+<%include partials/footer.ejs%>
