@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
+  "engines": {
+    "node": "6.11.4"
+  },
   "author": "kwh",
   "license": "ISC",
   "dependencies": {
