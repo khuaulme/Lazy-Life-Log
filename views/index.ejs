@@ -18,19 +18,19 @@
                        <div class="caption">
                            <h3><%=drink.name%></h3>
                        </div>
-                       <p>
-                           <%= drink.genre %>
-                       </p>
-                       <p>
-                           <%= drink.dservings %> servings today.
-                       </p>
-                       <p>
-                           <%= drink.wservings %> servings this week.
-                       </p>
-                       <form action="/drinks/<%=drink._id%>/inc?_method=PUT" method="POST">
-                           <button class="btn btn-success" onclick="<%=drink.dservings++%>">Have a Glass!</button>
-                       </form>
 
+                           <h5><%= drink.genre %> </h5>
+
+                           <h5><%= drink.dservings %> servings today.</h5>
+
+                           <h5><%= drink.wservings %> servings this week.</h5>
+                       
+                       <form action="/drinks/<%=drink._id%>/inc?_method=PUT" method="POST">
+                           <button class="btn btn-success" onclick="<%=drink.dservings++%>">Drink Up!</button>
+                       </form>
+                       <div>
+                           <a class = "btn btn-primary" href="/drinks/<%=drink._id%>">More Info</a>
+                       </div>
                    </div>
                </div>
             <% }); %>
