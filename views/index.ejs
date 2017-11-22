@@ -19,7 +19,7 @@
                            <h3><%=drink.name%></h3>
                        </div>
                        <p>
-                           <%= drink.type %>
+                           <%= drink.genre %>
                        </p>
                        <p>
                            <%= drink.dservings %> servings today.
@@ -30,14 +30,19 @@
                        <form action="/drinks/<%=drink._id%>/inc?_method=PUT" method="POST">
                            <button class="btn btn-success" onclick="<%=drink.dservings++%>">Have a Glass!</button>
                        </form>
-                       <p>
-                           <a href="/drinks/<%=drink._id%>" class="btn btn-primary btn-xs">More Information</a>
-                       </p>
+
                    </div>
                </div>
             <% }); %>
         </div>
+    <p><br>
+
+        <a href="/" class="btn btn-warning">Go Back</a>
+    </p>
     </div>
+
+
+
 
 
 <%include partials/footer.ejs%>

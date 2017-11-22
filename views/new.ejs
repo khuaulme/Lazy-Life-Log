@@ -8,7 +8,7 @@
         <div style="width:30%; margin:25px auto;">
 
             <!--This submits a post request to /drinks in my req-->
-            <!--<form action="/drinks" method="POST">-->
+
             <form action="/drinks" method="POST">
                 <div class="form-group">
                     <input class = "form-control" type="text" name = "name" placeholder="Name">
@@ -23,9 +23,13 @@
                     <input class = "form-control" type="number" name = "calories" placeholder="Calories per serving">
                 </div>
                 <div class="form-group">
-                    <input class = "form-control" type="radio" name="drink[type]" value="healthy">Healthy<br>
-                    <input class = "form-control" type="radio" name="drink[type]" value="alcohol">Alcohol<br>
-                    <input class = "form-control" type="radio" name="drink[type]" value="other">Other
+                    <label for = "genre">Type of drink</label>
+                    <select name="genre">
+                        <option value="healthy">Healthy</option>
+                        <option value="alcohol">Alcohol</option>
+                        <option value="other">Other</option>
+                    </select>
+
                 </div>
                 <div class="form-group">
                     <input class = "form-control" type="number" name = "dservings" placeholder="Servings consumed">
@@ -34,8 +38,12 @@
                     <button class="btn btn-lg btn-primary btn-block">Submit!</button>
                 </div>
             </form>
+            <p><br>
 
-            <a href="/drinks">Go Back</a>
+                <a href="/drinks" class="btn btn-warning">Go Back</a>
+            </p>
+
+
         </div>
 
     </div>

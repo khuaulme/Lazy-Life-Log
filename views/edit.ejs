@@ -27,9 +27,13 @@
                     <label style="color:slategray;">calories</label>
                 </div>
                 <div class="form-group">
-                    <input class = "form-control" type="radio" name="drink[type]" >Healthy<br>
-                    <input class = "form-control" type="radio" name="drink[type]" >Alcohol<br>
-                    <input class = "form-control" type="radio" name="drink[type]" >Other
+                    <label for = "genre">Type of drink</label>
+                    <select name="genre">
+                        <option value="drink[genre]">Healthy</option>
+                        <option value="drink[genre]">Alcohol</option>
+                        <option value="drink[genre]">Other</option>
+                    </select>
+
                 </div>
                 <div class="form-group">
                     <input class = "form-control" type="number" name = "drink[dservings]" value="<%=drink.dservings%>">
@@ -40,7 +44,10 @@
                     <button class="btn btn-lg btn-primary btn-block">Submit!</button>
                 </div>
             </form>
-            <a href="/drinks">Go Back</a>
+            <p><br>
+
+                <a href="/drinks" class="btn btn-warning">Go Back</a>
+            </p>
         </div>
 
     </div>

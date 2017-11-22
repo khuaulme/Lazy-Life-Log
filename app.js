@@ -27,7 +27,7 @@ var drinkSchema = new mongoose.Schema({
     image: String,
     description: String,
     calories: Number,
-    type: String,   // healthy or alcoholic or other
+    genre: String,  // healthy or alcohol or other
     dservings: Number,
     wservings: Number
 });
@@ -41,7 +41,7 @@ var Drink = mongoose.model("Drink", drinkSchema);        // DRINK is what I name
 //         description: "One of the crown jewels in the cocktail world." +
 //             " Consists of tequila, triple sec, and lime juice.",
 //         calories: 280,
-//         type: "alcoholic",
+//         genre: "alcohol",
 //         dservings: 0,
 //         wservings: 4
 //     }, function (err, drink) {
@@ -97,10 +97,10 @@ app.post("/drinks", function(req, res){
     var image = req.body.image;
     var description = req.body.description;
     var calories = req.body.calories;
-    var type = req.body.type;
+    var genre = req.body.genre;
     var dservings = req.body.dservings;
     var wservings = req.body.dservings;  // set the weekly servings to the daily servings upon creation
-    var newDrink = {name:name, image: image, description: description, calories:calories, type:type, dservings: dservings, wservings: wservings};
+    var newDrink = {name: name, image: image, description: description, calories:calories, genre: genre, dservings: dservings, wservings: wservings};
     Drink.create(newDrink, function(err, newlyCreated){
         if (err){
             console.log("Oops! Can't create drink.");

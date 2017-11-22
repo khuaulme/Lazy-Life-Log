@@ -7,24 +7,36 @@
         background-size: cover;
         background-repeat: no-repeat;
         /*min-height: 1050px;*/
-
-
     }
 </style>
 
         <div class="row">
             <div class="col-sm-3">
-                    <img onclick="location.href='/drinks'" src="odrink_in.png"/>
+                    <img style = "min-width: 250px" onclick="location.href='/drinks'" src="odrink_in.png"/>
                 </div>
 
             <div class="col-sm-6" >
 
             </div>
 
+            <% var alcoholicDrinkCount = 0; %>
+            <% var  healthyDrinkCount = 0; %>
+            <% var otherDrinkCount = 0; %>
+
             <div class="col-sm-3"><br>
                 Day at a Glance
                 <% drinks.forEach(function(drink){ %>
                 <h6><%=drink.name %> ----  <%= drink.dservings %> servings</h6>
+                <% if (drink.genre === "alcohol") { %>
+                    <% alcholicDrinkCount= alcoholicDrinkCount + drink.dservings; %>
+                    <% console.log("Alcohol : " + alcholicDrinkCount); %>
+                <% } else if (drink.genre === "healthy") { %>
+                    <% healthyDrinkCount = healthyDrinkCount + drink.dservings; %>
+                <% console.log("Healthy : " + healthyDrinkCount); %>
+                <% } else { %>
+                    <% otherDrinkCount = otherDrinkCount + drink.dservings; %>
+                <% } %>
+
                 <% }); %>
 
                 <br><br>
