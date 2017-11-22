@@ -52,7 +52,16 @@ var Drink = mongoose.model("Drink", drinkSchema);        // DRINK is what I name
 //     });
 
 app.get("/", function(req, res){
-    res.render("landing")
+    Drink.find({}, function (err, allDrinks) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("landing", {drinks: allDrinks});
+        }
+    });
+
+
+    // res.render("landing");
 });
 
 // INDEX ROUTE- SHOW ALL DRINKS

@@ -1,14 +1,36 @@
 
-#LandingArt {
-    max-width: 100%;
-    float: none;
+/*#LandingArt {*/
+    /*max-width: 100%;*/
+    /*float: none;*/
 
-}
+/*}*/
 
 img {
     width: 30%; /*30% of parent or body*/
     float: left;
     margin: 1.66%;
+}
+
+
+.col-sm-3{
+
+    color: whitesmoke;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+
+.row{
+    color: black;
+    text-align: center;
+    font-family: 'Raleway';
+    margin-left: 1.6%;
+    margin-right: 1.6%;
+    font-size: 23px;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 #footer{
     font-family: 'Raleway';
