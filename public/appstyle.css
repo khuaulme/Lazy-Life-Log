@@ -19,6 +19,7 @@ img {
 
 .navbar {
     background-color: transparent;
+    color: white;
 }
 
 
@@ -52,4 +53,12 @@ p {
     /*border-bottom: 2px solid #000000;*/
     /*width: 30%;*/
     padding-bottom: 20px;
+}
+
+body{
+    background: #1A2980;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #26D0CE, #1A2980);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #26D0CE, #1A2980); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
 }
