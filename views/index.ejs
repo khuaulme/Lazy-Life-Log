@@ -24,7 +24,7 @@
                            <h5><%= drink.dservings %> servings today.</h5>
 
                            <h5><%= drink.wservings %> servings this week.</h5>
-                       
+
                        <form action="/drinks/<%=drink._id%>/inc?_method=PUT" method="POST">
                            <button class="btn btn-success" onclick="<%=drink.dservings++%>">Drink Up!</button>
                        </form>

@@ -27,31 +27,31 @@ var drinkSchema = new mongoose.Schema({
     image: String,
     description: String,
     calories: Number,
-    genre: String,  // healthy or alcohol or other
+    genre: String,  // healthy, water, caffeine. alcohol or other
     dservings: Number,
     wservings: Number
 });
 
 var Drink = mongoose.model("Drink", drinkSchema);        // DRINK is what I name the collection
 
-// Drink.create(
-//     {
-//         name: "Margarita",
-//         image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
-//         description: "One of the crown jewels in the cocktail world." +
-//             " Consists of tequila, triple sec, and lime juice.",
-//         calories: 280,
-//         genre: "alcohol",
-//         dservings: 0,
-//         wservings: 4
-//     }, function (err, drink) {
-//         if (err){
-//             console.log(err);
-//         } else {
-//             console.log("NEWLY CREATED DRINK!");
-//             console.log(drink);
-//         }
-//     });
+Drink.create(
+    {
+        name: "Margarita",
+        image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
+        description: "One of the crown jewels in the cocktail world." +
+            " Consists of tequila, triple sec, and lime juice.",
+        calories: 280,
+        genre: "alcohol",
+        dservings: 0,
+        wservings: 4
+    }, function (err, drink) {
+        if (err){
+            console.log(err);
+        } else {
+            console.log("NEWLY CREATED DRINK!");
+            console.log(drink);
+        }
+    });
 
 app.get("/", function(req, res){
     Drink.find({}, function (err, allDrinks) {
@@ -131,7 +131,6 @@ app.get("/drinks/:id", function(req,res) {
 //FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(foundDrink);
 app.get("/drinks/:name/Alexa", function(req,res){
 
-    // var name = req.params.name;
     Drink.find( { name: req.params.name }, function (err, foundDrink){
 
         if (err) {
@@ -141,6 +140,100 @@ app.get("/drinks/:name/Alexa", function(req,res){
             res.json(foundDrink);
         }
     });
+
+});
+
+//GENRE ROUTE for ALEXA SERVICE
+app.get("/:genre/Alexa", function(req,res){
+
+    if (req.params.genre === 'healthy') {
+        Drink.find({'genre': 'healthy'}, function (err, healthyDrinks) {
+            if (err) {
+                console.log(err);
+                //res.send(err);
+            }
+            else {
+                console.log(healthyDrinks);
+                console.log(healthyDrinks.length);
+                var resultString = "";
+                var totalHealthyDrinks = 0;
+                var waterDrinkCount = 0;
+
+                // I'LL NEED THIS FOR ALEXA----------------------------------------
+                    for (var i = 0; i <healthyDrinks.length; i++){
+                        resultString = resultString + healthyDrinks[i].name + " daily servings: " + healthyDrinks[i].dservings;
+                        totalHealthyDrinks = totalHealthyDrinks + healthyDrinks[i].wservings;
+                        console.log(resultString);
+                    }
+
+                var d = new Date();
+                var n = d.getDay();
+                if ((n > 2) && (totalHealthyDrinks<10)) {
+                    console.log("You need to catch up. Only " + totalHealthyDrinks + " so far this week.");
+                }
+
+                Drink.find({'name': 'Water'}, function (err, waterDrinks){
+                    for (var j = 0; j < waterDrinks.length; j ++) {
+                        waterDrinkCount = waterDrinkCount + waterDrinks[j].dservings
+                    }
+                console.log("you had " + waterDrinkCount + " glasses of water.");
+
+                });
+
+                // I'LL NEED THIS FOR ALEXA-------------------------------------------
+
+                res.json(healthyDrinks);
+            }
+        });
+    } else if (req.params.genre === 'water') {
+        Drink.find({'genre': 'water'}, function (err, waterDrinks) {
+            if (err) {
+                console.log(err);
+                res.send(err);
+            }
+            else {
+                console.log(waterDrinks);
+                res.json(waterDrinks);
+            }
+        });
+    } else if (req.params.genre === 'caffeine') {
+        Drink.find({'genre': 'caffeine'}, function (err, caffeineDrinks) {
+            if (err) {
+                console.log(err);
+                res.send(err);
+            }
+            else {
+                console.log(caffeineDrinks);
+                res.json(caffeineDrinks);
+            }
+        });
+    } else if (req.params.genre === 'alcohol') {
+        Drink.find({'genre': 'alcohol'}, function (err, alcoholDrinks) {
+            if (err) {
+                console.log(err);
+                //res.send(err);
+            }
+            else {
+                console.log(alcoholDrinks);
+                res.json(alcoholDrinks);
+            }
+        });
+    }
+
+    else if (req.params.genre === 'other') {
+        Drink.find({'genre': 'other'}, function (err, otherDrinks) {
+            if (err) {
+                console.log(err);
+                //res.send(err);
+            }
+            else {
+                console.log(otherDrinks);
+                res.json(otherDrinks);
+            }
+        });
+    }
+
+
 
 });
 

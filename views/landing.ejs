@@ -3,16 +3,17 @@
 <style>
     body {
 
-        background-image: url("L3BeachText.jpg");
+        background-image: url("L3Beach.png");
         background-size: cover;
+        /*min-width: 100%;*/
         background-repeat: no-repeat;
-        /*min-height: 1050px;*/
+        /*min-height: 1200px;*/
     }
 </style>
 
         <div class="row">
             <div class="col-sm-3">
-                    <img style = "min-width: 250px" onclick="location.href='/drinks'" src="odrink_in.png"/>
+                    <img style = "min-width: 50%" onclick="location.href='/drinks'" src="odrink_in.png"/>
                 </div>
 
             <div class="col-sm-6" >
@@ -20,23 +21,31 @@
             </div>
 
             <% var alcoholicDrinkCount = 0; %>
-            <% var  healthyDrinkCount = 0; %>
+            <% var healthyDrinkCount = 0; %>
+            <% var waterDrinkCount = 0; %>
+            <% var caffeineDrinkCount = 0; %>
             <% var otherDrinkCount = 0; %>
 
             <div class="col-sm-3"><br>
                 Day at a Glance
                 <% drinks.forEach(function(drink){ %>
-                <h6><%=drink.name %> ----  <%= drink.dservings %> servings</h6>
-                <% if (drink.genre === "alcohol") { %>
-                    <% alcholicDrinkCount= alcoholicDrinkCount + drink.dservings; %>
-                    <% console.log("Alcohol : " + alcholicDrinkCount); %>
-                <% } else if (drink.genre === "healthy") { %>
-                    <% healthyDrinkCount = healthyDrinkCount + drink.dservings; %>
-                <% console.log("Healthy : " + healthyDrinkCount); %>
-                <% } else { %>
-                    <% otherDrinkCount = otherDrinkCount + drink.dservings; %>
-                <% } %>
-
+                    <h6><%=drink.name %> ----  <%= drink.dservings %> servings</h6>
+                        <% if (drink.genre === "alcohol") { %>
+                            <% alcholicDrinkCount= alcoholicDrinkCount + drink.dservings; %>
+                            <% console.log("Alcohol : " + alcholicDrinkCount); %>
+                        <% } else if (drink.genre === "healthy") { %>
+                            <% healthyDrinkCount = healthyDrinkCount + drink.dservings; %>
+                            <% console.log("Healthy : " + healthyDrinkCount); %>
+                        <% } else if (drink.genre === "water") { %>
+                            <% waterDrinkCount= waterDrinkCount + drink.dservings; %>
+                            <% console.log("Water : " + waterDrinkCount); %>
+                        <% } else if (drink.genre === "caffeine") { %>
+                            <% caffeineDrinkCount= caffeineDrinkCount + drink.dservings; %>
+                            <% console.log("Caffeine : " + caffeineDrinkCount); %>
+                        <% }  else { %>
+                            <% otherDrinkCount = otherDrinkCount + drink.dservings; %>
+                            <% console.log("Other : " + otherDrinkCount); %>
+                        <% } %>
                 <% }); %>
 
                 <br><br>
