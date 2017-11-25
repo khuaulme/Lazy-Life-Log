@@ -24,6 +24,7 @@ app.set("view engine", "ejs");
 // SCHEMA SET-UP
 var drinkSchema = new mongoose.Schema({
     name: String,
+    nameLower: String,
     image: String,
     description: String,
     calories: Number,
@@ -37,6 +38,7 @@ var Drink = mongoose.model("Drink", drinkSchema);        // DRINK is what I name
 // Drink.create(
 //     {
 //         name: "Margarita",
+//          nameLower: "margarita",
 //         image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
 //         description: "One of the crown jewels in the cocktail world." +
 //             " Consists of tequila, triple sec, and lime juice.",
@@ -61,9 +63,6 @@ app.get("/", function(req, res){
             res.render("landing", {drinks: allDrinks});
         }
     });
-
-
-    // res.render("landing");
 });
 
 // INDEX ROUTE- SHOW ALL DRINKS
@@ -94,13 +93,14 @@ app.get("/drinks/Alexa", function(req,res){
 app.post("/drinks", function(req, res){
    // get data from form and add to drinks array
     var name = req.body.name;
+    var nameLower = name.toLowerCase();
     var image = req.body.image;
     var description = req.body.description;
     var calories = req.body.calories;
     var genre = req.body.genre;
     var dservings = req.body.dservings;
     var wservings = req.body.dservings;  // set the weekly servings to the daily servings upon creation
-    var newDrink = {name: name, image: image, description: description, calories:calories, genre: genre, dservings: dservings, wservings: wservings};
+    var newDrink = {name: name, nameLower: nameLower, image: image, description: description, calories:calories, genre: genre, dservings: dservings, wservings: wservings};
     Drink.create(newDrink, function(err, newlyCreated){
         if (err){
             console.log("Oops! Can't create drink.");
@@ -129,9 +129,9 @@ app.get("/drinks/:id", function(req,res) {
 });
 
 //FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(foundDrink);
-app.get("/drinks/:name/Alexa", function(req,res){
+app.get("/drinks/:nameLower/Alexa", function(req,res){
 
-    Drink.find( { name: req.params.name }, function (err, foundDrink){
+    Drink.find( { nameLower : req.params.nameLower }, function (err, foundDrink){
 
         if (err) {
             console.log("Can't find " + req.params.name + " drink.");
