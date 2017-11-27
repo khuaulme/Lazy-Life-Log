@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25057d06-3960-494d-a5c1-b23c453ab194" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/edit.ejs" afterPath="$PROJECT_DIR$/views/edit.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,10 +20,10 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="57" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="2520">
+              <caret line="168" column="16" lean-forward="false" selection-start-line="168" selection-start-column="16" selection-end-line="168" selection-end-column="16" />
               <folding>
-                <marker date="1511800020000" expanded="true" signature="1127:1738" ph="..." />
+                <marker date="1511820133000" expanded="true" signature="1130:1795" ph="..." />
               </folding>
             </state>
           </provider>
@@ -42,7 +42,7 @@
       <file leaf-file-name="SummaryIntent.js" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/SummaryIntent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
+            <state relative-caret-position="1258">
               <caret line="382" column="0" lean-forward="true" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
               <folding />
             </state>
@@ -52,7 +52,7 @@
       <file leaf-file-name="scratch_5.js" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_5.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="-396">
               <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
               <folding />
             </state>
@@ -62,8 +62,8 @@
       <file leaf-file-name="edit.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/edit.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="34" column="68" lean-forward="true" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+            <state relative-caret-position="300">
+              <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -119,7 +119,6 @@
         <option value="$PROJECT_DIR$/views/show.ejs" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/views/new.ejs" />
-        <option value="$PROJECT_DIR$/views/edit.ejs" />
         <option value="$PROJECT_DIR$/views/landing.ejs" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_2.js" />
@@ -130,6 +129,7 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_4.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/SummaryIntent.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_5.js" />
+        <option value="$PROJECT_DIR$/views/edit.ejs" />
         <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
@@ -151,8 +151,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="119" />
+    <option name="x" value="-1127" />
+    <option name="y" value="-956" />
     <option name="width" value="1440" />
     <option name="height" value="808" />
   </component>
@@ -260,15 +260,15 @@
       <workItem from="1511460035795" duration="58000" />
       <workItem from="1511541669040" duration="13751000" />
       <workItem from="1511568462007" duration="26375000" />
-      <workItem from="1511717391902" duration="27326000" />
+      <workItem from="1511717391902" duration="30107000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="191088000" />
+    <option name="totallyTimeSpent" value="193869000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="119" width="1440" height="808" extended-state="0" />
+    <frame x="-1127" y="-956" width="1440" height="808" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11180556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -307,7 +307,7 @@
         <state relative-caret-position="1380">
           <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding>
-            <marker date="1511800020000" expanded="true" signature="1127:1738" ph="..." />
+            <marker date="1511820133000" expanded="true" signature="1130:1795" ph="..." />
           </folding>
         </state>
       </provider>
@@ -375,7 +375,7 @@
         <state relative-caret-position="510">
           <caret line="34" column="10" lean-forward="true" selection-start-line="22" selection-start-column="3" selection-end-line="34" selection-end-column="10" />
           <folding>
-            <marker date="1511800020000" expanded="true" signature="1127:1738" ph="..." />
+            <marker date="1511820133000" expanded="true" signature="1130:1795" ph="..." />
           </folding>
         </state>
       </provider>
@@ -392,7 +392,7 @@
         <state relative-caret-position="525">
           <caret line="35" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
-            <marker date="1511800020000" expanded="true" signature="1127:1738" ph="..." />
+            <marker date="1511820133000" expanded="true" signature="1130:1795" ph="..." />
           </folding>
         </state>
       </provider>
@@ -460,7 +460,7 @@
         <state relative-caret-position="300">
           <caret line="20" column="159" lean-forward="false" selection-start-line="20" selection-start-column="159" selection-end-line="20" selection-end-column="159" />
           <folding>
-            <marker date="1511800020000" expanded="true" signature="1127:1738" ph="..." />
+            <marker date="1511820133000" expanded="true" signature="1130:1795" ph="..." />
           </folding>
         </state>
       </provider>
@@ -634,14 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/new.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="32" column="29" lean-forward="false" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_4.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4950">
@@ -652,7 +644,7 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/SummaryIntent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
+        <state relative-caret-position="1258">
           <caret line="382" column="0" lean-forward="true" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
           <folding />
         </state>
@@ -660,26 +652,34 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_5.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="-396">
           <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/new.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="32" column="29" lean-forward="false" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/edit.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="34" column="68" lean-forward="true" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+        <state relative-caret-position="300">
+          <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="57" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="2520">
+          <caret line="168" column="16" lean-forward="false" selection-start-line="168" selection-start-column="16" selection-end-line="168" selection-end-column="16" />
           <folding>
-            <marker date="1511800020000" expanded="true" signature="1127:1738" ph="..." />
+            <marker date="1511820133000" expanded="true" signature="1130:1795" ph="..." />
           </folding>
         </state>
       </provider>

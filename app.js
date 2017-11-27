@@ -36,25 +36,25 @@ var drinkSchema = new mongoose.Schema({
 
 var Drink = mongoose.model("Drink", drinkSchema);        // DRINK is what I name the collection
 
-Drink.create(
-    {
-        name: "Margarita",
-         nameLower: "margarita",
-        image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
-        description: "One of the crown jewels in the cocktail world." +
-            " Consists of tequila, triple sec, and lime juice.",
-        calories: 280,
-        genre: "alcohol",
-        dservings: 0,
-        wservings: 4
-    }, function (err, drink) {
-        if (err){
-            console.log(err);
-        } else {
-            console.log("NEWLY CREATED DRINK!");
-            console.log(drink);
-        }
-    });
+// Drink.create(
+//     {
+//         name: "Margarita",
+//          nameLower: "margarita",
+//         image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
+//         description: "One of the crown jewels in the cocktail world." +
+//             " Consists of tequila, triple sec, and lime juice.",
+//         calories: 280,
+//         genre: "alcohol",
+//         dservings: 0,
+//         wservings: 4
+//     }, function (err, drink) {
+//         if (err){
+//             console.log(err);
+//         } else {
+//             console.log("NEWLY CREATED DRINK!");
+//             console.log(drink);
+//         }
+//     });
 
 app.get("/", function(req, res){
     Drink.find({}, function (err, allDrinks) {
@@ -166,7 +166,7 @@ app.get("/:genre/Alexa", function(req,res){
                 res.send(err);
             }
             else {
-                console.log(waterDrinks);
+                
                 res.json(waterDrinks);
             }
         });
@@ -177,7 +177,7 @@ app.get("/:genre/Alexa", function(req,res){
                 res.send(err);
             }
             else {
-                console.log(caffeineDrinks);
+
                 res.json(caffeineDrinks);
             }
         });
@@ -188,7 +188,7 @@ app.get("/:genre/Alexa", function(req,res){
                 //res.send(err);
             }
             else {
-                console.log(alcoholDrinks);
+
                 res.json(alcoholDrinks);
             }
         });
@@ -201,7 +201,7 @@ app.get("/:genre/Alexa", function(req,res){
                 //res.send(err);
             }
             else {
-                console.log(otherDrinks);
+
                 res.json(otherDrinks);
             }
         });
