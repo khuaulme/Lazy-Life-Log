@@ -22,6 +22,7 @@ app.set("view engine", "ejs");
 
 
 // SCHEMA SET-UP
+
 var drinkSchema = new mongoose.Schema({
     name: String,
     nameLower: String,
@@ -155,33 +156,6 @@ app.get("/:genre/Alexa", function(req,res){
             else {
                 console.log(healthyDrinks);
                 console.log(healthyDrinks.length);
-                var resultString = "";
-                var totalHealthyDrinks = 0;
-                var waterDrinkCount = 0;
-
-                // I'LL NEED THIS FOR ALEXA----------------------------------------
-                    for (var i = 0; i <healthyDrinks.length; i++){
-                        resultString = resultString + healthyDrinks[i].name + " daily servings: " + healthyDrinks[i].dservings;
-                        totalHealthyDrinks = totalHealthyDrinks + healthyDrinks[i].wservings;
-                        console.log(resultString);
-                    }
-
-                var d = new Date();
-                var n = d.getDay();
-                if ((n > 2) && (totalHealthyDrinks<10)) {
-                    console.log("You need to catch up. Only " + totalHealthyDrinks + " so far this week.");
-                }
-
-                Drink.find({'name': 'Water'}, function (err, waterDrinks){
-                    for (var j = 0; j < waterDrinks.length; j ++) {
-                        waterDrinkCount = waterDrinkCount + waterDrinks[j].dservings
-                    }
-                console.log("you had " + waterDrinkCount + " glasses of water.");
-
-                });
-
-                // I'LL NEED THIS FOR ALEXA-------------------------------------------
-
                 res.json(healthyDrinks);
             }
         });
@@ -295,43 +269,43 @@ app.delete("/drinks/:id", function(req, res){
 
 // CHRON JOBS ------Weekly Servings = Weekly Servings + Daily Servings ----- Daily Servings = 0 ------
 
-// var dailyJob = schedule.scheduleJob('42 * * * * *', function(){   // ('0 0 0 * * *', function
-//     console.log('The daily answer to life, the universe, and everything!');
-//     Drink.find({}, function (err, allDrinks) {
-//         console.log('Executing Daily Cron Job');
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             allDrinks.forEach(function(drink){
-//              //   drink.set({ wservings: drink.wservings + drink.dservings});
-//                 drink.set({ dservings: 0});
-//                 drink.save(function(err, updatedDrink){
-//                     if (err) { console.log(err);}
-//                     else {}
-//                 });
-//
-//             }); // ends forEach
-//         }
-//     });
-// });
+var dailyJob = schedule.scheduleJob('0 0 0 * * *', function(){   // ('0 0 0 * * *', function
+    console.log('The daily answer to life, the universe, and everything!');
+    Drink.find({}, function (err, allDrinks) {
+        console.log('Executing Daily Cron Job');
+        if (err) {
+            console.log(err);
+        } else {
+            allDrinks.forEach(function(drink){
+             //   drink.set({ wservings: drink.wservings + drink.dservings});
+                drink.set({ dservings: 0});
+                drink.save(function(err, updatedDrink){
+                    if (err) { console.log(err);}
+                    else {}
+                });
 
-// var weeklyJob = schedule.scheduleJob('12 * * * * *', function(){   // ('0 0 0 * * 0', function
-//     console.log('The answer to everything is 42!');
-//     Drink.find({}, function (err, allDrinks) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             allDrinks.forEach(function(drink){
-//
-//                 drink.set({ wservings: 0});
-//                 drink.save(function(err, updatedDrink){
-//                     if (err) { console.log(err);}
-//                     else {}
-//                 });
-//             });
-//         }
-//     });
-// });
+            }); // ends forEach
+        }
+    });
+});
+
+var weeklyJob = schedule.scheduleJob('0 0 0 * * 0', function(){   // ('0 0 0 * * 0', function
+    console.log('The answer to everything is 42!');
+    Drink.find({}, function (err, allDrinks) {
+        if (err) {
+            console.log(err);
+        } else {
+            allDrinks.forEach(function(drink){
+
+                drink.set({ wservings: 0});
+                drink.save(function(err, updatedDrink){
+                    if (err) { console.log(err);}
+                    else {}
+                });
+            });
+        }
+    });
+});
 
 
 
