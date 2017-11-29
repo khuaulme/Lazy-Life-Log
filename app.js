@@ -84,7 +84,7 @@ app.get("/drinks", function(req,res) {
 //FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(allDrinks);
 app.get("/drinks/Alexa", function(req,res){
         // get all drinks from db
-        Drink.find({}, 'name namePlural description calories genre dservings wservings', function(err, allDrinks){
+        Drink.find({}, 'name description calories genre dservings wservings', function(err, allDrinks){
             if (err){
                 console.log(err);
             } else {
@@ -138,7 +138,7 @@ app.get("/drinks/:nameLower/Alexa", function(req,res){
     Drink.find( { $or: [
             { nameLower: req.params.nameLower },
             { namePlural: req.params.nameLower }
-        ] },  function (err, foundDrink) {
+        ] }, 'name description calories genre dservings wservings', function (err, foundDrink) {
 
             if (err) {
                 console.log("Can't find " + req.params.name + " drink.");
