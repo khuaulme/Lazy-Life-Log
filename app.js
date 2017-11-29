@@ -26,6 +26,7 @@ app.set("view engine", "ejs");
 var drinkSchema = new mongoose.Schema({
     name: String,
     nameLower: String,
+    namePlural: String,
     image: String,
     description: String,
     calories: Number,
@@ -40,13 +41,14 @@ var Drink = mongoose.model("Drink", drinkSchema);        // DRINK is what I name
 //     {
 //         name: "Margarita",
 //         nameLower: "margarita",
+//         namePlural: "margaritas",
 //         image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
 //         description: "One of the crown jewels in the cocktail world." +
 //             " Consists of tequila, triple sec, and lime juice.",
 //         calories: 280,
 //         genre: "alcohol",
-//         dservings: 0,
-//         wservings: 4
+//         dservings: 1,
+//         wservings: 1
 //     }, function (err, drink) {
 //         if (err){
 //             console.log(err);
@@ -82,7 +84,7 @@ app.get("/drinks", function(req,res) {
 //FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(allDrinks);
 app.get("/drinks/Alexa", function(req,res){
         // get all drinks from db
-        Drink.find({}, 'name description calories genre dservings wservings', function(err, allDrinks){
+        Drink.find({}, 'name namePlural description calories genre dservings wservings', function(err, allDrinks){
             if (err){
                 console.log(err);
             } else {
@@ -96,13 +98,14 @@ app.post("/drinks", function(req, res){
    // get data from form and add to drinks array
     var name = req.body.name;
     var nameLower = name.toLowerCase();
+    var namePlural = nameLower+'s';
     var image = req.body.image;
     var description = req.body.description;
     var calories = req.body.calories;
     var genre = req.body.genre;
     var dservings = req.body.dservings;
     var wservings = req.body.dservings;  // set the weekly servings to the daily servings upon creation
-    var newDrink = {name: name, nameLower: nameLower, image: image, description: description, calories:calories, genre: genre, dservings: dservings, wservings: wservings};
+    var newDrink = {name: name, nameLower: nameLower, namePlural: namePlural, image: image, description: description, calories:calories, genre: genre, dservings: dservings, wservings: wservings};
     Drink.create(newDrink, function(err, newlyCreated){
         if (err){
             console.log("Oops! Can't create drink.");
@@ -130,32 +133,21 @@ app.get("/drinks/:id", function(req,res) {
     });
 });
 
-//FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(foundDrink);
+
 app.get("/drinks/:nameLower/Alexa", function(req,res){
+    Drink.find( { $or: [
+            { nameLower: req.params.nameLower },
+            { namePlural: req.params.nameLower }
+        ] },  function (err, foundDrink) {
 
-    Drink.find( { nameLower : req.params.nameLower }, 'name description calories genre dservings wservings', function (err, foundDrink){
+            if (err) {
+                console.log("Can't find " + req.params.name + " drink.");
+                console.log(err);
+            } else {
 
-        if (err) {
-            console.log("Can't find " + req.params.name + " drink.");
-            console.log(err);
-        } else {
-            res.json(foundDrink);
-        }
-    });
-
-});
-
-app.get("nameLower", function(req,res){
-
-    Drink.find( { nameLower : req.params.nameLower }, 'name description calories genre dservings wservings', function (err, foundDrink){
-
-        if (err) {
-            console.log("Can't find " + req.params.name + " drink.");
-            console.log(err);
-        } else {
-            res.json(foundDrink);
-        }
-    });
+                res.json(foundDrink);
+            }
+        });
 
 });
 
