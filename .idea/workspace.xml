@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25057d06-3960-494d-a5c1-b23c453ab194" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/landing.ejs" afterPath="$PROJECT_DIR$/views/landing.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/appstyle.css" afterPath="$PROJECT_DIR$/public/appstyle.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,10 +16,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-934">
+            <state relative-caret-position="-527">
               <caret line="2" column="49" lean-forward="true" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
               <folding>
                 <marker date="1511963933085" expanded="true" signature="1130:1794" ph="..." />
@@ -78,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing.ejs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="landing.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/landing.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="28" column="25" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+            <state relative-caret-position="335">
+              <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -91,8 +91,8 @@
       <file leaf-file-name="appstyle.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/appstyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="300">
+              <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -142,8 +142,8 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_7.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_8.js" />
-        <option value="$PROJECT_DIR$/public/appstyle.css" />
         <option value="$PROJECT_DIR$/views/landing.ejs" />
+        <option value="$PROJECT_DIR$/public/appstyle.css" />
       </list>
     </option>
   </component>
@@ -275,12 +275,12 @@
       <workItem from="1511568462007" duration="26375000" />
       <workItem from="1511717391902" duration="32284000" />
       <workItem from="1511847381122" duration="4631000" />
-      <workItem from="1511901920511" duration="13585000" />
+      <workItem from="1511901920511" duration="14003000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214262000" />
+    <option name="totallyTimeSpent" value="214680000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="13" y="104" width="1440" height="808" extended-state="0" />
@@ -653,29 +653,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-934">
-          <caret line="2" column="49" lean-forward="true" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
-          <folding>
-            <marker date="1511963933085" expanded="true" signature="1130:1794" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/appstyle.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        <state relative-caret-position="300">
+          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/landing.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="28" column="25" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+        <state relative-caret-position="335">
+          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-527">
+          <caret line="2" column="49" lean-forward="true" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
+          <folding>
+            <marker date="1511963933085" expanded="true" signature="1130:1794" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

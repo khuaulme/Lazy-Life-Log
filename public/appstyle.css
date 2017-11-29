@@ -18,8 +18,9 @@ img {
 }
 #list{
     border-radius: 25px;
-    border: 2px solid darkblue;
-    padding: 20px;
+    border: 2px solid navy;
+    padding: 10px;
+    opacity: .7;
 
     background-color: whitesmoke;
     color: navy ;
