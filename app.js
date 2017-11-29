@@ -39,7 +39,7 @@ var Drink = mongoose.model("Drink", drinkSchema);        // DRINK is what I name
 // Drink.create(
 //     {
 //         name: "Margarita",
-//          nameLower: "margarita",
+//         nameLower: "margarita",
 //         image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
 //         description: "One of the crown jewels in the cocktail world." +
 //             " Consists of tequila, triple sec, and lime juice.",
@@ -73,6 +73,7 @@ app.get("/drinks", function(req,res) {
         if (err) {
             console.log(err);
         } else {
+
             res.render("index", {drinks: allDrinks});
         }
     });
@@ -81,7 +82,7 @@ app.get("/drinks", function(req,res) {
 //FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(allDrinks);
 app.get("/drinks/Alexa", function(req,res){
         // get all drinks from db
-        Drink.find({}, function(err, allDrinks){
+        Drink.find({}, 'name description calories genre dservings wservings', function(err, allDrinks){
             if (err){
                 console.log(err);
             } else {
@@ -132,7 +133,7 @@ app.get("/drinks/:id", function(req,res) {
 //FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(foundDrink);
 app.get("/drinks/:nameLower/Alexa", function(req,res){
 
-    Drink.find( { nameLower : req.params.nameLower }, function (err, foundDrink){
+    Drink.find( { nameLower : req.params.nameLower }, 'name description calories genre dservings wservings', function (err, foundDrink){
 
         if (err) {
             console.log("Can't find " + req.params.name + " drink.");
@@ -144,11 +145,26 @@ app.get("/drinks/:nameLower/Alexa", function(req,res){
 
 });
 
+app.get("nameLower", function(req,res){
+
+    Drink.find( { nameLower : req.params.nameLower }, 'name description calories genre dservings wservings', function (err, foundDrink){
+
+        if (err) {
+            console.log("Can't find " + req.params.name + " drink.");
+            console.log(err);
+        } else {
+            res.json(foundDrink);
+        }
+    });
+
+});
+
+
 //GENRE ROUTE for ALEXA SERVICE
 app.get("/:genre/Alexa", function(req,res){
 
     if (req.params.genre === 'healthy') {
-        Drink.find({'genre': 'healthy'}, function (err, healthyDrinks) {
+        Drink.find({'genre': 'healthy'}, 'name description calories genre dservings wservings', function (err, healthyDrinks) {
             if (err) {
                 console.log(err);
                 //res.send(err);
@@ -166,7 +182,7 @@ app.get("/:genre/Alexa", function(req,res){
                 res.send(err);
             }
             else {
-                
+
                 res.json(waterDrinks);
             }
         });

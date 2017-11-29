@@ -16,6 +16,14 @@ img {
 
     color: whitesmoke;
 }
+#list{
+    border-radius: 25px;
+    border: 2px solid darkblue;
+    padding: 20px;
+    
+    background-color: whitesmoke;
+    color: navy ;
+}
 
 .navbar {
     background-color: transparent;
