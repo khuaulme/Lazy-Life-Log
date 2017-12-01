@@ -111,6 +111,18 @@ app.get("/drinks/new", function(req,res){
     res.render("new.ejs");
 });
 
+//FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(allDrinks);
+app.get("/drinks/Alexa", function(req,res){
+    // get all drinks from db
+    Drink.find({}, 'name nameLower description calories genre dservings wservings', function(err, allDrinks){
+        if (err){
+            console.log(err);
+        } else {
+            res.json(allDrinks);
+        }
+    });
+});
+
 // SHOWS INFO OVER JUST 1 DRINK
 app.get("/drinks/:id", function(req,res) {
     Drink.findById(req.params.id, function (err, foundDrink) {
@@ -122,17 +134,6 @@ app.get("/drinks/:id", function(req,res) {
     });
 });
 
-//FOR ALEXA< CREATE A NEW ROUTE with GET and res.json(allDrinks);
-app.get("/Alexa", function(req,res){
-    // get all drinks from db
-    Drink.find({}, 'name nameLower description calories genre dservings wservings', function(err, allDrinks){
-        if (err){
-            console.log(err);
-        } else {
-            res.json(allDrinks);
-        }
-    });
-});
 
 app.get("/drinks/:nameLower/Alexa", function(req,res){
     Drink.find( { $or: [
