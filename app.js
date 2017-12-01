@@ -5,14 +5,21 @@ var express         = require('express'),
     mongoose        = require("mongoose");
     _               = require("underscore");
     schedule        = require('node-schedule');
+var MongoClient = require('mongodb').MongoClient;
 
+//var uri = "mongodb://huaulme:W1nterC%40me%40huaulme-shard-00-00-5vklj.mongodb.net:27017,huaulme-shard-00-01-5vklj.mongodb.net:27017,huaulme-shard-00-02-5vklj.mongodb.net:27017/test?ssl=true&replicaSet=Huaulme-shard-0&authSource=admin";
+// MongoClient.connect(uri, function(err, db) {
+//     db.close();
+// });
     const port = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/drink_log", {
-    useMongoClient:true
-});
+
+mongoose.connect("mongodb://huaulme:W1nterC%40me@huaulme-shard-00-00-5vklj.mongodb.net:27017,huaulme-shard-00-01-5vklj.mongodb.net:27017,huaulme-shard-00-02-5vklj.mongodb.net:27017/drinks?ssl=true&replicaSet=Huaulme-shard-0&authSource=admin",
+    {
+        useMongoClient:true
+    });
 
 
 app.use(bodyParser.urlencoded({extended:true}));  // just memorize this - good for form posts
@@ -37,26 +44,26 @@ var drinkSchema = new mongoose.Schema({
 
 var Drink = mongoose.model("Drink", drinkSchema);        // DRINK is what I name the collection
 
-// Drink.create(
-//     {
-//         name: "Margarita",
-//         nameLower: "margarita",
-//         namePlural: "margaritas",
-//         image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
-//         description: "One of the crown jewels in the cocktail world." +
-//             " Consists of tequila, triple sec, and lime juice.",
-//         calories: 280,
-//         genre: "alcohol",
-//         dservings: 1,
-//         wservings: 1
-//     }, function (err, drink) {
-//         if (err){
-//             console.log(err);
-//         } else {
-//             console.log("NEWLY CREATED DRINK!");
-//             console.log(drink);
-//         }
-//     });
+Drink.create(
+    {
+        name: "Margarita",
+        nameLower: "margarita",
+        namePlural: "margaritas",
+        image: "https://cdn.liquor.com/wp-content/uploads/2017/07/05150949/Frozen-Margarita-720x720-recipe.jpg",
+        description: "One of the crown jewels in the cocktail world." +
+            " Consists of tequila, triple sec, and lime juice.",
+        calories: 280,
+        genre: "alcohol",
+        dservings: 1,
+        wservings: 1
+    }, function (err, drink) {
+        if (err){
+            console.log(err);
+        } else {
+            console.log("NEWLY CREATED DRINK!");
+            console.log(drink);
+        }
+    });
 
 app.get("/", function(req, res){
     Drink.find({}, function (err, allDrinks) {
